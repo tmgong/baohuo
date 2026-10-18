@@ -3,11 +3,10 @@ on:
   schedule:
     - cron: '0 0 * * *'
   workflow_dispatch:
-
 jobs:
   visit:
     runs-on: ubuntu-latest
     steps:
-      - name: Visit php api
+      - name: Visit proxy.php with apikey header
         run: |
-          curl -s -o /dev/null -w "HTTP_CODE:%{http_code}" https://tmgong.ct.ws/api.php?act=load
+          curl -L --max-time 15 -A "Mozilla/5.0" -H "apikey: sb_publishable_e82oSYkOtMyvyLn9uG_x1A_ZZkPf3pA" -s -o /dev/null -w "HTTP_CODE:%{http_code}" https://tmgong.ct.ws/proxy.php?path=rest/v1/users1&select=id&limit=1

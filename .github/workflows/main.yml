@@ -1,0 +1,15 @@
+name: Keep InfinityFree Alive 名称：保持 InfinityFree 在线
+on: 触发条件：
+  schedule: 计划执行：
+    # cron: 分 时 日 月 星期 
+    # UTC时间 0点 = 北京时间早上8点，每天执行一次
+    - cron: '0 0 * * *'     -编年史：'0 0 * * *
+  workflow_dispatch: # 可以手动点按钮立刻测试运行
+
+jobs: 
+  visit: 访问：
+    runs-on: ubuntu-latest 运行环境：ubuntu-latest
+    steps: 步骤：
+      - name: 访问你的PHP接口(act=load) 
+        run: |         运行：|
+          curl -s -o /dev/null -w "HTTP_CODE:%{http_code}" https://tmgong.ct.ws/api.php?act=load
